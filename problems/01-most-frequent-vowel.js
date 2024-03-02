@@ -61,8 +61,11 @@ mostFrequentVowel(['dog', 'cow', 'pig', 'chicken']); // 'i' or 'o'
 
 const VOWELS = ['a', 'e', 'i', 'o', 'u'];
 const mostFrequentVowel = function (words, counter = {}) {
-  // Your code here 
+
 }
+
+mostFrequentVowel(['dog', 'cow', 'pig', 'chicken', 'horse']); // 'o'
+mostFrequentVowel(['dog', 'cow', 'pig', 'chicken']); // 'i' or 'o'
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
