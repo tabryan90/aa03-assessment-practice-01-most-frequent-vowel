@@ -74,42 +74,46 @@ the `counter` object.
 debugger
 const vowels = ['a', 'e', 'i', 'o', 'u'];
 const mostFrequentVowel = function (words, counter = {}) {
-  let result = '';
-  let highestCount = 0;
 
-  if ( words.length === 0 && Object.entries(counter) === 0 ) return '';
+  if ( words.length === 0 && Object.keys(counter).length === 0 ) return "";
 
   if ( words.length === 0 ) {
-    for ( const [key, value] of Object.entries(counter) ) {
+    let result = '';
+    let highestCount = 0;
+
+    for (const [key, value] of Object.entries(counter) ) {
       if ( value > highestCount ) {
-        highestCount = value;
         result = key;
+        highestCount = value;
       }
     }
 
     return result;
-  }
+  };
 
   let chars = words[0].split('');
 
-  chars.forEach(char => {
+    chars.forEach(char => {
 
-    if ( vowels.includes(char) ) {
-      if ( Object.keys(counter).includes(char) ) {
-        counter[char] += 1;
-      } else {
-        counter[char] = 1;
+      if ( vowels.includes(char) ) {
+
+        if ( Object.keys(counter).includes(char) ) {
+          counter[char] += 1;
+        } else {
+          counter[char] = 1;
+        }
+
       }
-    }
 
-  });
+    });
 
   return mostFrequentVowel(words.splice(1), counter);
+
 }
 
-console.log(mostFrequentVowel([]));
+// console.log(mostFrequentVowel([]));
 console.log(mostFrequentVowel(['dog', 'cow', 'pig', 'chicken', 'horse'])); // 'o'
-console.log(mostFrequentVowel(['dog', 'cow', 'pig', 'chicken'])); // 'i' or 'o'
+// console.log(mostFrequentVowel(['dog', 'cow', 'pig', 'chicken'])); // 'i' or 'o'
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
