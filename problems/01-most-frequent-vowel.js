@@ -57,15 +57,63 @@ mostFrequentVowel(words, counter)
 mostFrequentVowel(['dog', 'cow', 'pig', 'chicken', 'horse']); // 'o'
 mostFrequentVowel(['dog', 'cow', 'pig', 'chicken']); // 'i' or 'o'
 
-***********************************************************************/
+Write a recursive function called `mostFrequentVowel(words, counter)` which
+takes in an array of words as lowercase strings and returns the vowel that shows
+up the most in all the strings in the array.
 
-const VOWELS = ['a', 'e', 'i', 'o', 'u'];
+If there are no vowels at all, return an empty string "".
+
+Your function should also accept a `counter` parameter that will be an empty
+object by default.
+
+Each recursive step should count the vowels in the last string in the array
+and add them to the `counter`. Return the vowel with the greatest count in
+the `counter` object.
+
+***********************************************************************/
+debugger
+const vowels = ['a', 'e', 'i', 'o', 'u'];
 const mostFrequentVowel = function (words, counter = {}) {
+
+  if ( words.length === 0 && Object.keys(counter).length === 0 ) return "";
+
+  if ( words.length === 0 ) {
+    let result = '';
+    let highestCount = 0;
+
+    for (const [key, value] of Object.entries(counter) ) {
+      if ( value > highestCount ) {
+        result = key;
+        highestCount = value;
+      }
+    }
+
+    return result;
+  };
+
+  let chars = words[0].split('');
+
+    chars.forEach(char => {
+
+      if ( vowels.includes(char) ) {
+
+        if ( Object.keys(counter).includes(char) ) {
+          counter[char] += 1;
+        } else {
+          counter[char] = 1;
+        }
+
+      }
+
+    });
+
+  return mostFrequentVowel(words.splice(1), counter);
 
 }
 
-mostFrequentVowel(['dog', 'cow', 'pig', 'chicken', 'horse']); // 'o'
-mostFrequentVowel(['dog', 'cow', 'pig', 'chicken']); // 'i' or 'o'
+// console.log(mostFrequentVowel([]));
+console.log(mostFrequentVowel(['dog', 'cow', 'pig', 'chicken', 'horse'])); // 'o'
+// console.log(mostFrequentVowel(['dog', 'cow', 'pig', 'chicken'])); // 'i' or 'o'
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
